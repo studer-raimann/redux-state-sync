@@ -1,5 +1,3 @@
-import { BroadcastChannel } from 'broadcast-channel';
-
 let lastUuid = 0;
 const GET_INIT_STATE = '&_GET_INIT_STATE';
 const SEND_INIT_STATE = '&_SEND_INIT_STATE';
@@ -94,8 +92,11 @@ export function MessageListener({ channel, dispatch, allowed }) {
 }
 
 export const createStateSyncMiddleware = (config = defaultConfig) => {
+    if (typeof BroadcastChannel === "undefined") {
+        throw new ReferenceError("Your browser does not support the Broadcast channel API!.");
+    }
     const allowed = isActionAllowed(config);
-    const channel = new BroadcastChannel(config.channel, config.broadcastChannelOption);
+    const channel = new BroadcastChannel(config.channel);
     const prepareState = config.prepareState || defaultConfig.prepareState;
     let messageListener = null;
 
