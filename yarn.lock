@@ -1714,7 +1714,6 @@ __metadata:
     "@babel/core": ^7.10.3
     "@babel/preset-env": ^7.10.3
     "@babel/register": ^7.10.3
-    "@types/redux": ^3.6.31
     babel-jest: ^26.0.1
     commitizen: ^4.1.2
     cz-conventional-changelog: ^3.2.0
@@ -1725,6 +1724,7 @@ __metadata:
     jest: ^26.0.1
     prettier: 2.0.5
     prettier-eslint: ^11.0.0
+    redux: ^4.0.5
     rimraf: ^3.0.2
     semantic-release: ^17.0.8
   languageName: unknown
@@ -1882,13 +1882,6 @@ __metadata:
   version: 2.0.1
   resolution: "@types/prettier@npm:2.0.1"
   checksum: fba408d98574b9790446bd5d5f1200a1baf164beea676eaad139320a1d1cdf54f2e411a865b253fc75fbadd1a096bb7eacbf13083fa7d26785e98dca57932b47
-  languageName: node
-  linkType: hard
-
-"@types/redux@npm:^3.6.31":
-  version: 3.6.31
-  resolution: "@types/redux@npm:3.6.31"
-  checksum: cf977fc072b3b4ac527308fffd6631aeaaa5e076015e170c4865ec2cc3f6ff039b4402b9b5bf44496588f8e6b1c6394c9680e3da8a5798d34adff9231ddccc0d
   languageName: node
   linkType: hard
 
@@ -7391,7 +7384,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0":
+"loose-envify@npm:^1.0.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -9493,6 +9486,16 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"redux@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "redux@npm:4.0.5"
+  dependencies:
+    loose-envify: ^1.4.0
+    symbol-observable: ^1.2.0
+  checksum: 112739c2fb83ae2e18335d942a883b3ee14ebada31ff3a7924511a1f38a4278a762f5823491f3eb5083492de601ed76cb2687295c7d5db9a6e098c2542cdc05b
+  languageName: node
+  linkType: hard
+
 "regenerate-unicode-properties@npm:^8.2.0":
   version: 8.2.0
   resolution: "regenerate-unicode-properties@npm:8.2.0"
@@ -10760,6 +10763,13 @@ fsevents@^2.1.2:
     has-flag: ^4.0.0
     supports-color: ^7.0.0
   checksum: 8b3b6d71ee298d7f9a3ff4bfb928bd037c0b691b01bdfebb77deb3384976cd78c180d564dc3689ce5fe254d323252f7064efa1364bf24ab81efa6b080e51eddb
+  languageName: node
+  linkType: hard
+
+"symbol-observable@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "symbol-observable@npm:1.2.0"
+  checksum: 268834a1d4cba19d40f367e5c2755f612969c8418e43a3be17408e392802a667f8bb542893440d58a080a8ea8da05ea98e27e472b9f4ff6fbda78a21a1a41c53
   languageName: node
   linkType: hard
 
