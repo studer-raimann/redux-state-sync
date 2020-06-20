@@ -55,40 +55,51 @@ export function isActionSynced(action) {
     return !!action.$isSync;
 }
 // export for test
-export function MessageListener({ channel, dispatch, allowed }) {
-    let isSynced = false;
-    const tabs = {};
-    this.handleOnMessage = stampedAction => {
+export class MessageListener {
+
+    constructor({ channel, dispatch, allowed }) {
+        this.isSynced = false;
+        this.tabs = new Set();
+        this.dispatch = dispatch;
+        this.allowed = allowed;
+
+
+        this.messageChannel = channel;
+        this.messageChannel.addEventListener("message", (message) => this.handleMessages(message.data));
+        this.messageChannel.addEventListener("messageerror", (error) => console.error(`Got channel transmission error with message: "${error.message}" (${error.constructor.name})`));
+    }
+
+    handleMessages(stampedAction) {
         // Ignore if this action is triggered by this window
         if (stampedAction.$wuid === WINDOW_STATE_SYNC_ID) {
             return;
         }
+
         // IE bug https://stackoverflow.com/questions/18265556/why-does-internet-explorer-fire-the-window-storage-event-on-the-window-that-st
         if (stampedAction.type === RECEIVE_INIT_STATE) {
             return;
         }
+
         // ignore other values that saved to localstorage.
         if (stampedAction.$uuid && stampedAction.$uuid !== lastUuid) {
-            if (stampedAction.type === GET_INIT_STATE && !tabs[stampedAction.$wuid]) {
-                tabs[stampedAction.$wuid] = true;
-                dispatch(sendIniteState());
-            } else if (stampedAction.type === SEND_INIT_STATE && !tabs[stampedAction.$wuid]) {
-                if (!isSynced) {
-                    isSynced = true;
-                    dispatch(receiveIniteState(stampedAction.payload));
+            if (stampedAction.type === GET_INIT_STATE && !this.tabs.has(stampedAction.$wuid)) {
+                this.tabs.add(stampedAction.$wuid);
+                this.dispatch(sendIniteState());
+            } else if (stampedAction.type === SEND_INIT_STATE && !this.tabs.has(stampedAction.$wuid)) {
+                if (!this.isSynced) {
+                    this.isSynced = true;
+                    this.dispatch(receiveIniteState(stampedAction.payload));
                 }
-            } else if (allowed(stampedAction)) {
+            } else if (this.allowed(stampedAction)) {
                 lastUuid = stampedAction.$uuid;
-                dispatch(
+                this.dispatch(
                     Object.assign(stampedAction, {
                         $isSync: true,
                     }),
                 );
             }
         }
-    };
-    this.messageChannel = channel;
-    this.messageChannel.onmessage = this.handleOnMessage;
+    }
 }
 
 export const createStateSyncMiddleware = (config = defaultConfig) => {
