@@ -11,5 +11,6 @@
   ],
   "ignore": [
     "./**/*.ts"
-  ]
+  ],
+  "comments": false
 }
