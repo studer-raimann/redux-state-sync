@@ -1,6 +1,6 @@
 {
     "name": "@srag/redux-state-sync-light",
-    "version": "3.1.1",
+    "version": "4.0.0",
     "description": "A middleware for redux to sync state in different tabs",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
