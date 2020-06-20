@@ -27,6 +27,11 @@
             "name": "MU AOHUA",
             "email": "muaohua@gmail.com",
             "url": "https://github.com/AOHUA"
+        },
+        {
+            "name": "Nicolas Schäfli",
+            "email": "support@studer-raimann.ch",
+            "url": "https://github.com/d3r1w"
         }
     ],
     "license": "MIT",
