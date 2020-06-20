@@ -9,3 +9,4 @@ src
 babel.config.json
 .travis.yml
 .yarnrc.yml
+.github
