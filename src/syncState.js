@@ -109,19 +109,15 @@ export const createStateSyncMiddleware = (config = defaultConfig) => {
         if (action && !action.$uuid) {
             const stampedAction = generateUuidForAction(action);
             lastUuid = stampedAction.$uuid;
-            try {
-                if (action.type === SEND_INIT_STATE) {
-                    if (getState()) {
-                        stampedAction.payload = prepareState(getState());
-                        channel.postMessage(stampedAction);
-                    }
-                    return next(action);
-                }
-                if (allowed(stampedAction) || action.type === GET_INIT_STATE) {
+            if (action.type === SEND_INIT_STATE) {
+                if (getState()) {
+                    stampedAction.payload = prepareState(getState());
                     channel.postMessage(stampedAction);
                 }
-            } catch (e) {
-                console.error("Your browser doesn't support cross tab communication");
+                return next(action);
+            }
+            if (allowed(stampedAction) || action.type === GET_INIT_STATE) {
+                channel.postMessage(stampedAction);
             }
         }
         return next(
