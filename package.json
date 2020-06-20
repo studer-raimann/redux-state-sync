@@ -2,7 +2,8 @@
     "name": "@srag/redux-state-sync-light",
     "version": "3.1.1",
     "description": "A middleware for redux to sync state in different tabs",
-    "main": "dist/syncState.js",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "scripts": {
         "lint": "eslint .",
         "test": "jest",
