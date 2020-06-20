@@ -1,0 +1,11 @@
+__mocks__
+__test__
+src
+.yarn
+.idea
+.prettierrc.js
+.eslintrc.json
+.nvmrc
+babel.config.json
+.travis.yml
+.yarnrc.yml
