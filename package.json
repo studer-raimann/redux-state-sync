@@ -8,8 +8,7 @@
         "lint": "eslint .",
         "test": "jest",
         "commit": "git-cz",
-        "build": "rimraf dist && babel src --copy-files --out-dir dist",
-        "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+        "build": "rimraf dist && babel src --copy-files --out-dir dist"
     },
     "repository": {
         "type": "git",
@@ -37,9 +36,9 @@
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/AOHUA/redux-state-sync/issues"
+        "url": "https://github.com/studer-raimann/redux-state-sync/issues"
     },
-    "homepage": "https://github.com/AOHUA/redux-state-sync#readme",
+    "homepage": "https://github.com/studer-raimann/redux-state-sync#readme",
     "devDependencies": {
         "@babel/cli": "^7.10.3",
         "@babel/core": "^7.10.3",
