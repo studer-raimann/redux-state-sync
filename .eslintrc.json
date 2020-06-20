@@ -1,0 +1,12 @@
+{
+    "extends": ["airbnb-base", "prettier"],
+
+    "root": true,
+    "globals": {
+        "BroadcastChannel": true
+    },
+    "ignorePatterns": ["node_modules", "dist"],
+    "rules": {
+        "react/jsx-filename-extension": 0
+    }
+}
