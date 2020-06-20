@@ -1,19 +1,21 @@
-<p align="center">
-  <a href="https://github.com/AOHUA/redux-state-sync">
-    <img src="./logo.png" width="300px" />
-  </a>
-</p>
-
-# Redux-State-Sync 3.1
+# Redux-State-Sync-Light
 
 A lightweight middleware to sync your redux state across browser tabs. It will listen to the Broadcast Channel and dispatch exactly the same actions dispatched in other tabs to keep the redux state in sync.
 
-[<img src="https://img.shields.io/travis/AOHUA/redux-state-sync.svg">](https://travis-ci.org/AOHUA/redux-state-sync)
-[<img src="https://img.shields.io/npm/dm/redux-state-sync.svg">](https://www.npmjs.com/package/redux-state-sync)
+### Before you Start
+This package is a lightweight version of `redux-state-sync` which only
+supports the native BroadcastChannel API, shipped with modern Browsers (except Safari).
+
+This is a modified version of the [redux-state-sync](https://github.com/AOHUA/redux-state-sync) package.
+The credit for the implementation and kudos goes to them!
+
+
+#### Notable differences
+* The configuration object of does not support channel options because there is only one.
+* Typescript definitions are directly provided by the package.
+* No UMD builds.
 
 ### Why Redux-State-Sync?
-
-![](redux-state-sync.gif)
 
 It syncs your redux store across tabs with very minimal configuration.
 
@@ -24,32 +26,21 @@ Thanks to [BroadcastChannel](https://developer.mozilla.org/en-US/docs/Web/API/Br
 Install with npm.
 
 ```
-npm install --save redux-state-sync
+npm install --save @srag/redux-state-sync-light
 ```
 
 Install with yarn
 
 ```
-yarn add redux-state-sync
+yarn add @srag/redux-state-sync-light
 ```
 
 ### TypeScript support
+The type definitions are included with the package.
 
-Install with npm.
+Original type source: [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/e6e55443f88128b6393105407c8e8239cb10509b/types/redux-state-sync/index.d.ts)
 
-```
-npm install --save-dev @types/redux-state-sync
-```
-
-Install with yarn
-
-```
-yarn add --dev @types/redux-state-sync
-```
-
-Types are defined [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/e6e55443f88128b6393105407c8e8239cb10509b/types/redux-state-sync/index.d.ts)
-
-### Before you use
+### Supported Data Structures
 
 Please take note that BroadcastChannel can only send data that is supported by the [structured clone algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm) (Strings, Objects, Arrays, Blobs, ArrayBuffer, Map), so you need to make sure that the actions that you wanna send to other tabs doesn't include any functions in the payload.
 
@@ -177,25 +168,7 @@ const config = {
 const middlewares = [createStateSyncMiddleware(config)];
 ```
 
-##### Warning: You should only use one of the option to filter your actions. if you have all 3 options predicate, blacklist, and whitelist, only one will be effective and the priority is predicate > blacklist > whitelist.
-
-#### broadcastChannelOption
-
-Redux-state-sync is using [BroadcastChannel](https://github.com/pubkey/broadcast-channel) to comunicate between tabs. broadcastChannelOption is the option passed to broadcastChannel when we creating the channel.
-
-type: `Object`
-
-default: null
-
-```javascript
-const config = {
-    // Only 'TOGGLE_TODO' will be triggered in other tabs
-    whitelist: ['TOGGLE_TODO'],
-    // enforce a type, oneOf['native', 'idb', 'localstorage', 'node']
-    broadcastChannelOption: { type: 'localstorage' },
-};
-const middlewares = [createStateSyncMiddleware(config)];
-```
+**Warning:** You should only use one of the option to filter your actions. if you have all 3 options predicate, blacklist, and whitelist, only one will be effective and the priority is predicate > blacklist > whitelist.
 
 ### Working with immutable.js
 
