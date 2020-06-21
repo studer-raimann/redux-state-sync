@@ -25,12 +25,15 @@ class BroadcastChannelMock {
 
   postMessage(data) {
     this.validateChannel();
-    this.listeners.forEach((listener) => listener(data));
+    const event = { data }
+    this.listeners.forEach((listener) => listener(event));
   }
 
-  addEventListener(func) {
+  addEventListener(event, func) {
     this.validateChannel();
-    this.listeners.push(func);
+    if (event === "message") {
+      this.listeners.push(func);
+    }
   }
 
   removeEventListener(func) {
