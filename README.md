@@ -1,4 +1,4 @@
-# Redux-State-Sync-Light
+# Redux-State-Sync-Lite
 
 A lightweight middleware to sync your redux state across browser tabs. It will listen to the Broadcast Channel and dispatch exactly the same actions dispatched in other tabs to keep the redux state in sync.
 
