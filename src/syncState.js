@@ -66,6 +66,7 @@ export class MessageListener {
 
         this.messageChannel = channel;
         this.messageChannel.addEventListener("message", (message) => this.handleMessages(message.data));
+        // eslint-disable-next-line no-console
         this.messageChannel.addEventListener("messageerror", (error) => console.error(`Got channel transmission error with message: "${error.message}" (${error.constructor.name})`));
     }
 
