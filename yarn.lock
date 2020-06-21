@@ -1706,9 +1706,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@srag/redux-state-sync-light@workspace:.":
+"@srag/redux-state-sync-lite@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@srag/redux-state-sync-light@workspace:."
+  resolution: "@srag/redux-state-sync-lite@workspace:."
   dependencies:
     "@babel/cli": ^7.10.3
     "@babel/core": ^7.10.3

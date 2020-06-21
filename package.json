@@ -1,10 +1,9 @@
 {
-    "name": "@srag/redux-state-sync-light",
+    "name": "@srag/redux-state-sync-lite",
     "version": "4.0.0",
     "description": "A middleware for redux to sync state in different tabs",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "private": false,
     "scripts": {
         "lint": "eslint .",
         "test": "jest",
